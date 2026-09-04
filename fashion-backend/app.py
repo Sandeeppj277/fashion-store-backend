@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+@app.on_event("startup")
+def on_startup():
+    SQLModel.metadata.create_all(engine)
 
 origins = [
     "http://localhost:3000",
